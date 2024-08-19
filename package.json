@@ -7,11 +7,14 @@
 		"dev:next": "next dev",
 		"dev": "concurrently \"yarn run dev:api\" \"yarn run dev:next\"",
 		"build": "next build",
-		"start": "next start",
+		"start:api": "pip install -r requirements.txt && python -m uvicorn api.index:app",
+		"start:next": "next start",
+		"start": "concurrently \"yarn run start:api\" \"yarn run start:next\"",
 		"lint": "next lint",
 		"format": "prettier --write ."
 	},
 	"dependencies": {
+		"concurrently": "^8.2.2",
 		"next": "14.2.4",
 		"react": "^18",
 		"react-dom": "^18"
